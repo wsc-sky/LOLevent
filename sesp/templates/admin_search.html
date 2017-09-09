@@ -1,0 +1,73 @@
+﻿{% extends "template.base.html" %}
+
+{% load staticfiles %}
+
+
+{% block title %}Search{% endblock %}
+
+{% block extrastyle %}
+    <link href="{% static 'css/jquery.tagit.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/tagit.ui-zendesk.css' %}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block content %}
+<br>
+<br>
+<br>
+                <div class="container" >
+
+      <h1>Event Management</h1>
+      <hr>
+            <form  action="/admin/search/" method="post">
+            {% csrf_token %}
+
+          <div class="form-group row">
+                <div class="col-xs-10" style="float:right; text-align: center; top:20px;" row = 1>
+                    <div class="col-sm-8">
+                    <input class="form-control" size="70" type="text" name="tags" style="height:38px;width:100%; top:100px;" placeholder="Event" required >
+                    </div>
+                    <div class="col-sm-2" style="left:-30px;">                  
+                    <button type="submit" class="btn btn-success form-control" style="height:38px; width:100px;">Search</button>
+                    </div>
+          <br><br><br>
+
+
+              </div>
+            </form>
+          </div>
+
+
+
+
+        <br>
+        <div class="container"  style="width:93%;">
+        <div class="col-md-12" " >
+                        
+              <div class="alert alert-info">Enter one or more search terms to begin search</div>
+              
+        <hr>
+         
+          {% for event in events %}
+            <div class="col-md-11">
+
+            <a href="/control/edit/{{event.id}}" >
+            <h3> {{event.title}} (Id: {{event.id}})  </h3>
+            </a>
+            <p>  Date: {{event.date}} </p>
+            <p>  Location: {{event.test}} </p>
+            <p>  {{event.description}} </p>
+            <hr>
+            </div>
+
+            <div class="col-md-1" style="padding-top: 30px;">
+            <a href="/delete/{{event.id}}" >
+            <button class="btn btn-danger" style="height:50px; width:70px;" >delete</button>
+            </a>
+            </div>
+            
+
+          {% endfor %}
+ </div>
+          </div>
+
+{% endblock %}

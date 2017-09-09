@@ -1,0 +1,83 @@
+{% extends "template.base.html" %}
+
+{% block title %}Control Panel{% endblock %}
+
+{% block content %}
+<br>
+<br>
+<br>
+                <div class="container" >
+
+        <h1>Management</h1>
+        <br>
+        <div class="row">
+          <div class="col-md-3">
+            <div class="panel panel-primary">
+              <div class="panel-heading dropdown">
+                <div class="panel-title">
+                  {{ PROJECT_NAME }}
+				  </div>
+              </div>
+                <ul class="nav nav-stacked nav-compact">
+					<li><a href="/control/insert/"><strong>Insert event</strong></a></li>
+					<li><a href="/control/management/"><strong>Management Event</strong></a></li>
+
+
+                </ul>
+            </div>
+          </div>
+          <div class="col-md-9">
+            {% block control-content %}         
+			<div class="alert alert-info">Select a option from left side</div>
+            <div class="panel panel-default">
+              <div class="panel-heading">System update</div>
+              <div class="panel-body">
+			  <div >
+        
+                  <h5>Version 2017. Aug. 16 </h5>
+                  <ul>
+                    <li>Search function</li>
+					          <li>Paging function</li>
+                    <li>front-end optimize</li>
+                    <li>user_page optimize</li>
+                  </ul>
+                </div>
+			  <div >
+                  <h5>Version 2017. Aug. 15 </h5>
+                  <ul>
+                    <li>Like function</li>
+					          <li>Paticipate function</li>
+                  </ul>
+                </div>
+			  <div >
+                  <h5>Version 2017. Aug. 14 </h5>
+                  <ul>
+                    <li>Bugs Fix</li>
+					          <li>Event management</li>
+                    <li>Event insert</a></li>
+                  </ul>
+                </div>
+				<div >
+                  <h5>Version 2017. Aug. 11</h5>
+                  <ul>
+                    <li>Models system</li>
+					         <li>User register</a></li>
+                   <li>User verification</a></li>
+                  </ul>
+                </div>
+			  <div >
+                  <h5>Version 2017. Aug. 10 </h5>
+                  <ul>
+                    <li>Development environment</a></li>
+					          <li>System set up</li>
+
+                  </ul>
+                </div>
+
+              </div>
+            </div>          
+            {% endblock %}
+          </div>
+        </div>
+      </div>
+{% endblock %}

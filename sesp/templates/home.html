@@ -1,0 +1,239 @@
+{% extends "template.base.html" %}
+
+
+{% block title %}Home{% endblock %}
+{% block content %}
+
+<style type="text/css">  
+
+.carousel-caption a {
+  margin-bottom: 90px;
+  display: inline-block;
+  color: inherit;
+
+}
+.carousel-caption  {
+  top: 180px; 
+  position: absolute;
+
+}
+.carousel-control {
+  background: none;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  border: none;
+  width: 20px;
+  height: 66px;
+  opacity: 1;
+  top: 50%;
+  margin-top: -33px;
+}
+
+
+</style>
+  <!-- Carousel
+    ================================================== -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel" >
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner" role="listbox">
+        <div class="item active">
+          <img class="first-slide" src="/static/images/title1.jpg" alt="First slide">
+          <div class="container">
+
+            <div class="carousel-caption">
+            <a class="text" href="/event_detial/17/" >
+              <h1 style="font-size: 45px;" >LOL World Championship</h1>
+              <p style="font-size: 20px;">Note: If you're viewing this page</p></a>
+            <form  action="/user/search/#event" method="post">
+            {% csrf_token %}
+            <div class="form-group row"  >
+                <div class="col-xs-8" style="text-align: center; left:135px;" row = 1>
+                    <div class="input-group">
+                        <input class="form-control" type="text" name="tags" placeholder="Event's name or Date Range(D/M/Y)" required style="height:45px;">
+                        <span class="input-group-btn">
+                            <button class="btn btn-success" type="submit" style="height:46px; width:50px; margin-top:-1px; " ><span class="glyphicon glyphicon-search" aria-hidden="true" ></span></button>
+                        </span>
+                        </span>
+                    </div>
+                </div>
+            
+            </div>
+            </form>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img class="second-slide" src="/static/images/title_2.jpg" alt="Second slide">
+          <div class="container">
+            <div class="carousel-caption">
+            <a class="text" href="/event_detial/17/" >
+              <h1 style="font-size: 45px;" >LOL World Championship</h1>
+              <p style="font-size: 20px;">Note: If you're viewing this page</p></a>
+            <form  action="/user/search/#event" method="post">
+            {% csrf_token %}
+            <div class="form-group row">
+                <div class="col-xs-8" style="text-align: center; left:135px;" row = 1>
+                    <div class="input-group">
+                        <input class="form-control" type="text" name="tags" placeholder="Event's name or Date Range(D/M/Y)" required style="height:45px;">
+                        <span class="input-group-btn">
+                            <button class="btn btn-success" type="submit" style="height:46px; width:50px; margin-top:-1px; " ><span class="glyphicon glyphicon-search" aria-hidden="true" ></span></button>
+                        </span>
+                        </span>
+                    </div>
+                </div>
+            
+            </div>
+            </form>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img class="third-slide" src="/static/images/title3.jpg" alt="Third slide">
+          <div class="container">
+            <div class="carousel-caption">
+            <a class="text" href="#" >
+              <h1 style="font-size: 45px;" >LOL World Championship</h1>
+              <p style="font-size: 20px;">Note: If you're viewing this page</p></a>
+            <form  action="/user/search/#event" method="post">
+            {% csrf_token %}
+            <div class="form-group row">
+                <div class="col-xs-8" style="text-align: center; left:135px;" row = 1>
+                    <div class="input-group">
+                        <input class="form-control" type="text" name="tags" placeholder="Event's name or Date Range(D/M/Y)" required style="height:45px;">
+                        <span class="input-group-btn">
+                            <button class="btn btn-success" type="submit" style="height:46px; width:50px; margin-top:-1px; " ><span class="glyphicon glyphicon-search" aria-hidden="true" ></span></button>
+                        </span>
+                        </span>
+                    </div>
+                </div>
+            
+            </div>
+            </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev" style="background-image: url(/static/images/left.png); left: 50px;">
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next" style="background-image: url(/static/images/right.png);right: 50px;">
+        <span class="sr-only">Next</span>
+      </a>
+    </div><!-- /.carousel -->
+<br>
+
+
+
+
+
+
+    <div id="event" class="container" >
+    <div id="option" class="container"  style="">
+  <hr>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#" style="font-size:20px; color: #005AB5;">Sort by</a>
+    </div>
+
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav">
+        <li><a href="/home/sort/1/#event">Like</a></li>
+        <li><a href="/home/sort/2/#event">Pticipatant</a></li>
+
+      <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Date <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="/home/sort/6/#event">Latest Published</a></li>
+            <li class="divider"></li>
+            <li><a href="/home/sort/7/#event">Closest Event</a></li>
+          </ul>
+        </li>
+        <li><a href="/home/sort/4/#event">Organizer</a></li>
+        <li><a href="/home/sort/5/#event">Location</a></li>
+      </ul>
+      <form class="navbar-form navbar-left" action="/user/date_search/#event" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+              {% csrf_token %}
+          <input type="text" class="form-control" placeholder="Start Date (D/M/Y)" name="start_date" required>
+          —
+        </div>
+        <div class="form-group">
+              {% csrf_token %}
+          <input type="text" class="form-control" placeholder="End Date (D/M/Y)" name="end_date" required>
+        </div>
+
+        <button type="submit" class="btn btn-success form-control">Filter</button>
+      </form>
+ 
+    </div><!-- /.navbar-collapse -->
+  </div><!-- /.container-fluid -->
+</nav>
+
+
+  <hr>    
+  </div>
+      {% for event in events %}
+      <div class="" style="height: 260px;">
+        <div class="col-md-5">
+          <img src="{{event.image.url}}" height="300" width="450"></img>
+        </div>
+        <div class="col-md-7">
+        <a href="/event_detial/{{event.id}}">
+          <h3 style=" margin-top:-1px;">{{event.title}} (Organizer: {{event.organizer}})</h3>
+          <p style=" padding-top :0;">location: {{event.test}}</p>
+          <p style=" padding-top :0;">Date: {{event.date}}</p>
+          <p>{{event.description}}</p></a>
+          <br><br><br>
+          <a  href="/like2/{{event.id}}/{{user.id}}/{{user.first_name}}{{user.last_name}}/#event" class="col-md-6 " style="height: 10px; "  ><span class="glyphicon glyphicon-heart"> {{event.like}} Likes</a>
+          <a href="/paticipate2/{{event.id}}/{{user.id}}/{{user.first_name}}{{user.last_name}}/#event" class="col-md-6" style="height: 10px; "><span class="glyphicon glyphicon-user"> {{event.participant}} Participants</a>
+
+        </div>
+        <div class="col-md-12">
+      <hr>
+        </div>
+      </div>
+      {% endfor %}
+      </div>
+<center>
+<ul class="pagination pagination-lg">
+  <li><a href="#">&laquo;</a></li>
+  {% for i in whole_page %}
+  <li><a href="/home/{{i}}/">{{i}}</a></li>
+  {% endfor %}
+  <li><a href="#">&raquo;</a></li>
+</ul><br></center>
+<hr>
+       <!-- FOOTER -->
+       <br> <br>
+      <footer>
+    <p class="text-center"">Version2.0 © 2017 Design by <a target="_blank" href="mailto:446713518@qq.com?Subject=hello%20WEISICONG">Arrow</a>.</p>
+ <br> <br>
+
+
+     <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="../../assets/js/vendor/holder.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>   
+
+{% endblock %}

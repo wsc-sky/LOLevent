@@ -1,0 +1,104 @@
+{% extends "template.base.html" %}
+
+
+{% block title %}Home{% endblock %}
+{% block content %}
+
+<style type="text/css">  
+
+.carousel-caption a {
+  margin-bottom: 90px;
+  display: inline-block;
+  color: inherit;
+
+}
+.carousel-caption  {
+  top: 180px; 
+  position: absolute;
+
+}
+.carousel-control {
+  background: none;
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+  border: none;
+  width: 20px;
+  height: 66px;
+  opacity: 1;
+  top: 50%;
+  margin-top: -33px;
+}
+</style>
+ 
+<br>
+
+
+
+<br>
+<br><br>
+<div class="container" style="width:81%;"> 
+
+        <img src="{{user.userprofile.photo.url}}"  height="170" width="170" style="border-radius:85px"></img>
+  <h1>{{user.first_name}} {{user.last_name}}</h1>
+ 
+  <hr>
+  <br>
+  <h3> You have active events: </h3>
+
+
+
+</div>
+
+<br>
+    <div id="event" class="container">
+      <!-- Example row of columns -->
+      
+      {% for event in events %}
+      <div class="" style="height: 260px;">
+        <div class="col-md-5">
+          <img src="{{event.image.url}}" height="300" width="450"></img>
+        </div>
+        <div class="col-md-7">
+        <a href="/event_detial/{{event.id}}">
+          <h3 style=" margin-top:-1px;">{{event.title}} (Organizer: {{event.organizer}})</h3>
+          <p style=" padding-top :0;">location: {{event.test}}</p>
+          <p style=" padding-top :0;">Date: {{event.date}}</p>
+          <p>{{event.description}}</p></a>
+          <br><br><br>
+          <a  href="/like2/{{event.id}}/{{user.id}}/{{user.first_name}}{{user.last_name}}" class="col-md-6 " style="height: 10px; "  ><span class="glyphicon glyphicon-heart"> {{event.like}} Likes</a>
+          <a href="/paticipate2/{{event.id}}/{{user.id}}/{{user.first_name}}{{user.last_name}}" class="col-md-6" style="height: 10px; "><span class="glyphicon glyphicon-user"> {{event.participant}} Participants</a>
+
+        </div>
+        <div class="col-md-12">
+      <hr>
+        </div>
+      </div>
+      {% endfor %}
+      </div>
+<center>
+<ul class="pagination pagination-lg">
+  <li><a href="#">&laquo;</a></li>
+  {% for i in whole_page %}
+  <li><a href="/home/{{i}}/">{{i}}</a></li>
+  {% endfor %}
+  <li><a href="#">&raquo;</a></li>
+</ul><br></center>
+
+       <!-- FOOTER -->
+      <footer>
+    <p class="text-center"">Version2.0 © 2017 Design by <a target="_blank" href="mailto:446713518@qq.com?Subject=hello%20WEISICONG">Arrow</a>.</p>
+
+
+
+     <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="../../assets/js/vendor/holder.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>   
+
+{% endblock %}

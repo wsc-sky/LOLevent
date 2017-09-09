@@ -1,0 +1,149 @@
+{% extends "template.base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}Edit Question{% endblock %}
+
+{% block extrastyle %}
+    <link href="{% static 'css/jquery.tagit.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/tagit.ui-zendesk.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'css/fileinput.css' %}" media="all" rel="stylesheet" type="text/css">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap-datetimepicker.min.css' %}?20140217">
+
+{% endblock %}
+
+
+{% block content %}
+<br>
+<br>
+<br>
+                <div class="container" >
+
+      <h1>Edit event</h1> 
+      <br>
+      {% if saved %}<div class="alert alert-success">该题已成功保存</div>{% endif %}
+      {% if form.errors %}
+      <div class="alert alert-danger">
+        {{ form.errors.as_text }}
+      </div>
+      {% endif %}
+      <form class="form-basic" method="post" role="form" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="row">
+
+          <div class="col-sm-10">
+                <div class="form-group{% if form.title.errors %} has-error{% endif %}">
+              <textarea class="form-control" id="{{ form.title.id_for_label }}" name="title" rows="2" style="height:40px;">{{event.title}} </textarea>
+
+      </div>
+
+      <div class="form-group{% if form.solution.errors %} has-error{% endif %}">
+              <textarea id="{{ form.test.id_for_label }}" name="organizer" class="form-control" rows="2" placeholder="Organizer" style="height:40px;" >{{event.organizer}}</textarea>
+      </div>
+
+      <div class="form-group{% if form.solution.errors %} has-error{% endif %}">
+              <textarea id="{{ form.test.id_for_label }}" name="test" class="form-control" rows="2" placeholder="Location" style="height:40px;" >{{event.test}}</textarea>
+      </div>
+
+			</div>
+		</div>
+<br>
+      <div class="form-group">
+
+                <div class="input-group date form_datetime col-md-5" data-date="2017-09-16T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
+                    <input class="form-control" size="16" type="text" value="{{event.date}}" readonly  name="date"> </input>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
+          <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
+                </div>
+        <input type="hidden" id="dtp_input1" value="" /><br/>
+            </div>
+		
+		<div class="row form-group">
+		  
+  <div class="col-sm-10">
+
+          <textarea class="form-control" id="{{ form.description.id_for_label }}" name="description" rows="1" placeholder="Event Description" style="height:60px;">{{event.description}}</textarea>
+
+          
+<br>
+      <div class="form-group">
+
+              <textarea class="form-control" id="{{ form.content.id_for_label }}" name="content" rows="1" placeholder="Main Content"
+              rows="1"  style="height:120px;">{{ event.content }}</textarea>
+
+      </div>
+
+
+      <h3> preview picture</h3>
+        <img src="{{event.image.url}}" height="300" width="500"></img>
+        <br><br>
+          {{ form.as_p }}
+          <input id="file-4" class="file" type="file" multiple=true name="image">
+          <hr>
+
+
+
+
+      </div>
+
+        <div class="row form-group" >
+          <div class="col-xs-12">
+            <div class="well">
+              {% if selected_event %}<button type="submit" class="btn btn-primary">Save Changes</button>
+			  {% else %}<button type="submit" class="btn btn-primary">Modify</button>{% endif %}
+              <a href="/control/" class="btn btn-danger">Back</a>
+            </div>
+          </div>
+        </div>
+      </form>
+
+    <script src="{% static 'js/jquery-1.8.3.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap-datetimepicker.fr.js' %}"></script>
+    <script src="{% static 'js/time.js' %}"></script>
+    <script src="{% static 'js/fileinput.js' %}"></script>
+ <script >
+    $('.form_datetime').datetimepicker({
+        //language:  'fr',
+    weekStart: 1,
+    todayBtn:  1,
+    autoclose: 1,
+    todayHighlight: 1,
+    startView: 2,
+    forceParse: 0,
+        showMeridian: 1
+    });
+  $('.form_date').datetimepicker({
+        language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+    autoclose: 1,
+    todayHighlight: 1,
+    startView: 2,
+    minView: 2,
+    forceParse: 0
+    });
+  $('.form_time').datetimepicker({
+        language:  'fr',
+        weekStart: 1,
+        todayBtn:  1,
+    autoclose: 1,
+    todayHighlight: 1,
+    startView: 1,
+    minView: 0,
+    maxView: 1,
+    forceParse: 0
+    });
+
+
+
+  $("#file-4").fileinput({
+    'allowedFileExtensions' : ['jpg', 'png','gif'],
+  });
+
+
+
+
+  </script>
+{% endblock %}

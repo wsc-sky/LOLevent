@@ -1,0 +1,120 @@
+{% extends "template.base.html" %}
+
+
+{% block title %}Home{% endblock %}
+{% block content %}
+
+
+<br>
+<br>
+<br>
+
+
+    <div class="container">
+      <!-- Example row of columns -->
+
+      <br>
+      <center >
+      <h1 >{{event.title}}</h1>
+      <p >Organizers: <strong>{{event.organizer}} </strong>.    Location: <strong>{{event.test}} </strong></p>
+      
+      <a href="/like/{{event.id}}/{{user.id}}/{{user.first_name}}{{user.last_name}}" id="button1" class="col-md-6 " style="height: 10px; "  ><span class="glyphicon glyphicon-heart"> {{event.like}} Likes</a>
+      <a href="/paticipate/{{event.id}}/{{user.id}}/{{user.first_name}}{{user.last_name}}"class="col-md-6" style="height: 10px;"><span class="glyphicon glyphicon-user"> {{event.participant}} Participants</a>
+      <br><br>
+
+      <img src="{{event.image.url}}" height="500" width="1000"></img>
+      <br><br>
+      </center>
+      <div class="container" style="width:92%; ">
+                <p style="font-size: 21px;">{{event.content}}</p>
+          <br><br><br>
+
+          <hr>
+      <strong style="font-size: 18px;">{{event.like}} likes:</strong> 
+      {% for like in like_list%}
+      <span style="font-size: 14px;">{{like}} ,</span> 
+      {% endfor %}
+      <br>
+      <br>
+      <strong style="font-size: 18px;">{{event.participant}} people paticipated: </strong>
+      {% for people in p_list%}
+      <span style="font-size: 14px;">{{people}} ,</span> 
+      {% endfor %}
+     </div>
+          <br>
+      </div>  
+
+  </div>
+
+
+  <div class="container" style="width:77%;">
+  <center>
+  <h2 id="comment">Comment List</h2>
+  </center>
+  <hr>
+    {% for con in comment %}
+
+    {% if con.user_id.id == user.id %}
+
+
+      <div class="" style="height: 110px;">
+      <div class="col-md-11">
+      <div class="col-md-1">
+        <img src="{{con.user_id.userprofile.photo.url}}"  height="70" width="70" style="border-radius:35px"></img>
+      </div>
+      <div class="col-md-11">
+      <br><p style="font-size:15px; "><span style="color: #FF8F59;">{{ con.user_id.first_name }}{{ con.user_id.last_name }}</span> :  {{con.content}}</p>
+      <hr>
+      </div>
+      </div>
+      <div class="col-md-1">  
+      <a href="/comment/delete/{{event.id}}/{{con.id}}/#comment" class="btn btn-danger"> Delete</a> 
+      </div>
+      </div>
+    {% else %}
+      <div class="" style="height: 110px;">
+    <div class="col-md-12" style="">
+      <div class="col-md-1">
+        <img src="{{con.user_id.userprofile.photo.url}}"  height="70" width="70" style="border-radius:35px"></img>
+      </div>
+      <div class="col-md-11">
+      <br><p style="font-size:15px;"><span style="color: #FF8F59;">{{con.user_id.first_name }}{{ con.user_id.last_name }}</span> :  {{con.content}}</p>
+      <hr>
+      </div>
+
+      </div>
+  </div>
+    {% endif %}
+    {% endfor %}
+    <br>
+    <hr>
+  </div>
+  <
+
+  <div class="container" style="width:77%;">
+  <br><br>
+    <form  action="/comment/{{event.id}}/{{user.first_name}}{{user.last_name}}/{{user.id}}/#comment" method="post" >
+    {% csrf_token %}
+          <div class="col-sm-10">
+          <div class="form-group">
+              <textarea class="form-control"  name="content" rows="2" placeholder="Comment" style="height:180px; margin-left: -20px;"></textarea>
+
+      </div>    
+      </div>
+
+      <button  type="submit" class="btn btn-primary" style=" margin-top: 140px;margin-left: 2px;">Comment</button>
+      
+      </form>
+  </div>
+    <br><br><br><br>
+
+<hr>
+       <!-- FOOTER -->
+       <br> <br>
+      <footer>
+    <p class="text-center"">Version2.0 © 2017 Design by <a target="_blank" href="mailto:446713518@qq.com?Subject=hello%20WEISICONG">Arrow</a>.</p>
+ <br> <br>
+
+
+
+{% endblock %}

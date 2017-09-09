@@ -1,0 +1,133 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+ <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>  {% block title %}{% endblock %} | </title> 
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}?20140217" media="screen">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-theme.min.css' %}?20140217">
+    <link rel="stylesheet" href="{% static 'css/itemrtweb.css' %}?20140217">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-datetimepicker.min.css' %}?20140217">
+
+    {% block extrastyle %}
+    {% endblock %}
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="{% static 'js/html5shiv.js' %}"></script>
+      <script src="{% static 'js/respond.min.js' %}"></script>
+    <![endif]-->
+
+    {% block extrahead %}
+    {% endblock %}
+    {% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
+
+
+    <style type="text/css">  
+    .navbar .nav > li .dropdown-menu {  
+        margin: 0;  
+
+    }  
+    .navbar .nav > li:hover .dropdown-menu { 
+
+        display: block;  
+      }
+    .nav_option { 
+
+        margin-top:5px; 
+      }
+  .navbar {
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+    }  
+</style> 
+  </head>
+  <body>
+
+    <div id="mainnavbar" class="navbar navbar-inverse navbar-static-top" role="navigation"  style="  background-color: #6C6C6C; height: 57px;">
+      <div class="container">
+        <div class="navbar-header" >
+          <a class="navbar-brand" href="/home/" style="font-size:21px; background-image: url(/static/images/logo.png);  height:33px; width:33px; margin-top:11px; margin-left:-40px; "></a>
+          <a class="navbar-brand" href="/home/" style="font-size:24px; margin-top:5px; margin-left:-5px; ">Garena </a>
+        </div>
+        <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav navbar-right">
+            {% if user.is_authenticated %}
+
+            <li class="dropdown nav_option"  >
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-fire"></span> Account</a>
+                <ul class="dropdown-menu">
+                  <li><a href="/user/profile/{{user.id}}/">Profile</a></li>
+                  <li class="divider"></li>
+
+                <li><a href="/accounts/logout/">Logout</a></li>
+              </ul>
+            </li>
+            {% else %}
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Login</a>
+              <ul class="dropdown-menu nav-login" style="width: 230px; ">
+                <div class="container" >
+                <li class="nav-login-content" style="width: 200px;">
+                  <form action="/accounts/login/" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                      <label for="loginInputEmail">Email</label>
+                      <input type="text" class="form-control" id="loginInputEmail" name="username" placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                      <label for="loginInputPassword">Password</label>
+                      <input type="password" class="form-control" id="loginInputPassword" name="password" placeholder="Password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Login</button>
+                  </form>
+                </li>
+                <li class="divider"></li>
+                <li class="nav-login-content">New User? <span><a href="/accounts/register/">Register</a></span></li>
+            </li>
+            {% endif %}
+      {% if user.is_staff %}
+            <li><a href="/control/" class="nav_option"><span class="glyphicon glyphicon-cog"></span> Management</a></li>
+            {% endif %}
+            {% if user.is_superuser %}
+            <li><a href="/admin/" class="nav_option"><span class="glyphicon glyphicon-wrench"></span> Control </a></li>
+            {% endif %}
+</div>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
+      {% block content %}
+
+      {% endblock %}
+    </div><!-- /.container -->
+
+    {% block scripts %}
+    <script src="{% static 'js/jquery-1.10.2.min.js' %}"></script>
+    <script src="{% static 'js/jquery.plugin.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/chart.min.js' %}"></script>
+    <script src="{% static 'js/run_prettify.js' %}"></script>
+    <script src="{% static 'js/jquery.countdown.min.js' %}"></script>
+    <script src="{% static 'js/itemrtweb.js' %}"></script>
+    <script src="{% static 'js/canvasjs.min.js' %}"></script>
+
+    
+    <script src="{% static 'js/jquery-1.8.3.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap-datetimepicker.fr.js' %}"></script>
+    <script src="{% static 'js/time.js' %}"></script>
+    {% endblock %}
+  </body>
+</html>
+
+
